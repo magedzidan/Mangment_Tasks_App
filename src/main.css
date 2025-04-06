@@ -1,0 +1,55 @@
+#root{
+    display: flex;
+    font-family: "Bungee Tint", sans-serif;
+    font-style: normal;
+}
+
+
+
+
+#ProjectsBar{
+    font-family: "Bungee Tint", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 5rem;
+    width: 25%;
+    height: 100vh;
+    padding: 1rem;
+    padding-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    border-top-right-radius: 2rem;
+    color: rgb(248, 14, 14);
+}
+
+#ProjectsBar button{
+    border-radius: 0.4rem;
+    color: rgb(227, 243, 226);
+    padding: 0.8rem;
+}
+
+#emptyBody{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+#emptyBody button{
+
+    border-radius: 0.4rem;
+    color: rgb(227, 243, 226);
+    padding: 0.8rem;
+}
+
+#emptyBody p{
+    font-weight: 100;
+
+}
