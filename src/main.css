@@ -53,3 +53,39 @@
     font-weight: 100;
 
 }
+
+.newProject{
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
+    flex-direction: column;
+    text-align: start;
+}
+
+#newProject button{
+
+    border-radius: 1.9rem;
+    color: rgb(227, 243, 226);
+    padding: 0.8rem;
+}
+
+.newBtn{
+    border-radius: 0.4rem;
+
+}
+
+.input_area input{
+    padding: 1.2rem;
+    width: 48rem;
+    border-radius: 0.4rem;
+
+}
+
+.input_area label{
+    padding-top: 2.0rem;
+
+}
