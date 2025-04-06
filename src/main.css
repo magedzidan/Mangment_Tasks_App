@@ -89,3 +89,12 @@
     padding-top: 2.0rem;
 
 }
+
+#ProjectsBar .Projects button{
+    text-align: start;
+    padding: 0.4rem;
+}
+
+#ProjectsBar .Projects button:hover{
+background-color: rgb(92, 45, 12);
+}
