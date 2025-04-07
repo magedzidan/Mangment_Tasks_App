@@ -8,24 +8,36 @@ function App() {
   const [descrbtion, setDescrbtion] = useState('');
   const [date, setDate] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [projectTasks, setProjectTasks] = useState({}); // Store tasks for each project
 
   function MakeNewProject() {
     setSaveProject(true);
   }
 
   function SaveProject() {
-    SetNewProject((oldProjects) => [...oldProjects, { //by3lm 3l array kolha msh bylf 3leha ...oldproject==array msh element f el project
+    const newProjectId = Math.random().toString();
+    SetNewProject((oldProjects) => [...oldProjects, {
+      id: newProjectId,
       title: title,
       description: descrbtion,
       dueDate: date
     }]);
-    console.log(newProject);
+    setProjectTasks(prev => ({
+      ...prev,
+      [newProjectId]: [] // Initialize empty tasks array for new project
+    }));
     setSaveProject(false);
   }
-  function DeleteProject(title) {
+
+  function DeleteProject(id) {
     SetNewProject((prevProjects) => 
-      prevProjects.filter(project => project.title !== title)
+      prevProjects.filter(project => project.id !== id)
     );
+    setProjectTasks(prev => {
+      const newTasks = {...prev};
+      delete newTasks[id];
+      return newTasks;
+    });
     setSelectedProject(null);
   }
 
@@ -37,6 +49,23 @@ function App() {
     setSelectedProject(project);
   }
 
+  function addTask(projectId, taskText) {
+    setProjectTasks(prev => ({
+      ...prev,
+      [projectId]: [...(prev[projectId] || []), {
+        id: Math.random().toString(),
+        text: taskText
+      }]
+    }));
+  }
+
+  function deleteTask(projectId, taskId) {
+    setProjectTasks(prev => ({
+      ...prev,
+      [projectId]: prev[projectId].filter(task => task.id !== taskId)
+    }));
+  }
+
   return (
     <>
       <div id="ProjectsBar" className="bg-amber-950">
@@ -44,7 +73,7 @@ function App() {
         <button className="bg-amber-900 hover:bg-amber-800" onClick={MakeNewProject}>+AddProject</button>
         <ol className="Projects">
           {newProject.map((project) => (
-            <li className="" key={project.title}>
+            <li className="" key={project.id}>
               <button onClick={() => handleProjectSelect(project)}>{project.title}</button>
             </li>
           ))}
@@ -67,7 +96,13 @@ function App() {
           </div>
         </div>
       ) : selectedProject ? (
-        <Task {...selectedProject} deleteProj={DeleteProject} />
+        <Task 
+          {...selectedProject} 
+          deleteProj={DeleteProject}
+          tasks={projectTasks[selectedProject.id] || []}
+          onAddTask={addTask}
+          onDeleteTask={deleteTask}
+        />
       ) : (
         <div id="emptyBody">
           <img src="src\assets\no-projects.png" width={80} height={90} alt='Large Pizza'/>

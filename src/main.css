@@ -160,9 +160,11 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    
   }
   
   .task-input {
+    padding: 1rem;
     width: 18rem;
     height: 2.5rem;
     background-color: rgb(229, 231, 235);
@@ -184,7 +186,7 @@
   .tasks-list {
     margin-top: 2.5rem;
     width: 75%;
-    padding: 2.5rem;
+    padding: 1.5rem;
     background-color: rgb(229, 231, 235);
   }
   
