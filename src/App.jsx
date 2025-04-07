@@ -14,13 +14,19 @@ function App() {
   }
 
   function SaveProject() {
-    SetNewProject((oldProjects) => [...oldProjects, {
+    SetNewProject((oldProjects) => [...oldProjects, { //by3lm 3l array kolha msh bylf 3leha ...oldproject==array msh element f el project
       title: title,
       description: descrbtion,
       dueDate: date
     }]);
     console.log(newProject);
     setSaveProject(false);
+  }
+  function DeleteProject(title) {
+    SetNewProject((prevProjects) => 
+      prevProjects.filter(project => project.title !== title)
+    );
+    setSelectedProject(null);
   }
 
   function CancelProject() {
@@ -35,7 +41,7 @@ function App() {
     <>
       <div id="ProjectsBar" className="bg-amber-950">
         <h1 className="text-4xl font-bold">Your Projects</h1>
-        <button className="bg-amber-900" onClick={MakeNewProject}>+AddProject</button>
+        <button className="bg-amber-900 hover:bg-amber-800" onClick={MakeNewProject}>+AddProject</button>
         <ol className="Projects">
           {newProject.map((project) => (
             <li className="" key={project.title}>
@@ -61,7 +67,7 @@ function App() {
           </div>
         </div>
       ) : selectedProject ? (
-        <Task {...selectedProject} />
+        <Task {...selectedProject} deleteProj={DeleteProject} />
       ) : (
         <div id="emptyBody">
           <img src="src\assets\no-projects.png" width={80} height={90} alt='Large Pizza'/>
